@@ -1,0 +1,21 @@
+PyBank：
+
+$ python Main.py
+total month: 86
+total pofit/loss:38382578
+Average:446309.0465116279
+The Greatest_Increase:Feb-2017 & 1170593
+The Greatest_Decrease:Feb-2017 & -1196225
+-------------------------------------------
+PyPoll：
+
+$ python Main.py
+Total Votes are 3521001
+Candidates are: ['Khan', 'Correy', 'Li', "O'Tooley"]
+Khan: 63.00001050837531%
+Correy: 19.999994319797125%
+Li: 13.999996023857989%
+O'Tooley: 2.999999147969569%
+The Winner is Khan
+
+
