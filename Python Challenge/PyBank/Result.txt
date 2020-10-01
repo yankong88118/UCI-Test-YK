@@ -1,0 +1,12 @@
+PyBank：
+
+$ python Main.py
+total month: 86
+total pofit/loss:38382578
+Average:446309.0465116279
+The Greatest_Increase:Feb-2017 & 1170593
+The Greatest_Decrease:Feb-2017 & -1196225
+-------------------------------------------
+
+
+
