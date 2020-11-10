@@ -8,21 +8,14 @@ WHERE
 	hire_date LIKE '%1986'
 
 --List the manager of each department with department number, department name, the manager's employee number, last name, first name
-SELECT e.emp_no,e.last_name,e.first_name
-FROM employees e
-WHERE emp_no in 
-(
-	SELECT emp_no 
-	FROM dept_manager
-	WHERE dept_no in
-	(
-		SELECT dept_no
-		FROM departments
-	)
-	
-);
-
-
+SELECT employees.emp_no,employees.last_name,employees.first_name,
+departments.dept_name
+FROM employees
+INNER JOIN dept_emp ON employees.emp_no = dept_emp.emp_no
+INNER JOIN departments ON departments.dept_no = dept_emp.dept_no
+INNER JOIN titles ON titles.title_id=employees.emp_title_id
+WHERE
+	titles.title='Manager'
 
 --List the department of each employee with employee number, last name, first name, and department name
 SELECT employees.emp_no,employees.last_name,employees.first_name,
