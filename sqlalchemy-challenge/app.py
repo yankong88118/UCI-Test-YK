@@ -29,8 +29,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/2010-01-01<br/>"
-        f"/api/v1.0/2010-01-01/2010-12-31<br/>"
+        f"/api/v1.0/start_date<br/>"
+        f"/api/v1.0/start_date/end_date<br/>"
     )
 
 #precipitation
@@ -49,7 +49,7 @@ def precipitation():
 #station
 @app.route("/api/v1.0/stations")
 def Station():
-    station_data=session.query(station.station).order_by(station.station).all()
+    station_data=session.query(station.station,station.name).order_by(station.station).all()
     return jsonify(station_data)
 
 #temperature
@@ -70,22 +70,21 @@ def temperature():
         filter(measurement.date>=last_year).all()
     return jsonify(most_active_station_data)
 
-#start & end
-@app.route("/api/v1.0/2010-01-01")
-def start_date():
-    start_date_data=session.query(func.min(measurement.tobs), 
-       func.max(measurement.tobs), 
-       func.avg(measurement.tobs)).\
-       filter(measurement.date>="2010-01-01").all()
+#start
+@app.route("/api/v1.0/<start_date>")
+def calc_temps_start(start):
+    sel=[func.min(measurement.tobs), func.max(measurement.tobs), func.avg(measurement.tobs)]
+    start_date_data=session.query(*sel).\
+       filter(measurement.date>=start).all()
     return jsonify(start_date_data)
 
-@app.route("/api/v1.0/2010-01-01/2010-12-31")
-def start_to_end_date():
-    start_to_end=session.query(func.min(measurement.tobs), 
-       func.max(measurement.tobs), 
-       func.avg(measurement.tobs)).\
-       filter(measurement.date>="2010-01-01").\
-       filter(measurement.date<="2010-12-31").all()
+#start and end
+@app.route("/api/v1.0/<start_date>/<end_date>")
+def calc_temps(start_date, end_date):
+    select=[func.min(measurement.tobs), func.max(measurement.tobs), func.avg(measurement.tobs)]
+    start_to_end=session.query(*select).\
+        filter(measurement.date>=start_date).\
+       filter(measurement.date<=end_date).all()
     return jsonify(start_to_end)
 
 if __name__ == '__main__':
