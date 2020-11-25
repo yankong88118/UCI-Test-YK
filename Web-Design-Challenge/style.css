@@ -1,0 +1,64 @@
+/*head style*/
+h1{
+    text-align: left;
+    color: rgb(97, 116, 221);
+    font-size: 45px;
+}
+/*description style*/
+p{
+    color:rgb(71, 71, 71);
+    font-size: 18px;
+    margin-top: 24px;
+}
+
+.container {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+/*plot image style*/
+.current{
+    border: 3px solid rgb(75, 204, 183);
+}
+/*navbar style*/
+a.navbar-brand{
+    margin-left: 10px;
+    padding: 10px;
+    background-color: rgb(75, 204, 183);
+    color:white;
+    font-size: 25px;
+}
+
+.navbar{
+    padding-top:0px;
+    padding-bottom: 0px;
+    padding-right:40px;
+}
+
+.nav-item.dropdown.show {
+    background-color: white;
+}
+
+.dropdown-menu {
+    margin: 5px;
+}
+
+/*small screen*/
+@media(max-width:960px){
+    .navbar.bg-light{
+        background-color: rgb(81, 175, 160);    
+    }
+
+    .navbar-collapse{
+        background-color: white;
+    }
+    .navbar{
+        padding:inherit;
+    }
+}
+
+/*wrap picture*/
+.wrap{
+    float: left;
+    margin-right:20px;
+}
