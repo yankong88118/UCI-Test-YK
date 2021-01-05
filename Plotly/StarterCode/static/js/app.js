@@ -1,3 +1,4 @@
+//grab metadata
 function buildMetadata(sample) {
         d3.json("samples.json").then((data) => {
           var metadata= data.metadata;
@@ -25,27 +26,6 @@ function buildMetadata(sample) {
         var ids = sampleset.otu_ids;
         var labels = sampleset.otu_labels;
         var values = sampleset.sample_values;
-    
-    
-        // Create a Bubble Chart
-        var bubbleTrace = [
-                {
-                  x: ids,
-                  y: values,
-                  text: labels,
-                  mode: "markers",
-                  marker: {
-                    color: ids,
-                    size: values,
-                    }
-                }
-              ];
-
-        var bubbleLayout = {
-          xaxis: { title: "OTU ID" },
-          };
-    
-        Plotly.plot("bubble", bubbleTrace, bubbleLayout);
     
         //  Build a bar Chart
         forTopTen=[]
@@ -79,6 +59,28 @@ function buildMetadata(sample) {
         };
     
         Plotly.newPlot("bar", barTrace, barLayout);
+
+        // Create a Bubble Chart
+        var bubbleTrace = [
+                {
+                  x: ids,
+                  y: values,
+                  text: labels,
+                  mode: "markers",
+                  marker: {
+                    color: ids,
+                    size: values,
+                    }
+                }
+              ];
+
+        var bubbleLayout = {
+          xaxis: { title: "OTU ID" },
+          };
+    
+        Plotly.plot("bubble", bubbleTrace, bubbleLayout);
+    
+        
       });
     }
        
